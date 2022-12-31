@@ -91,7 +91,12 @@ export default {
   <div class="container">
     <div>
       <ul>
-        <li v-for="memo in memos" v-bind:key="memo.id" @click="select(memo)" class="list">
+        <li
+          v-for="memo in memos"
+          v-bind:key="memo.id"
+          @click="select(memo)"
+          class="list"
+        >
           {{ memo.title }}
         </li>
       </ul>
@@ -114,13 +119,13 @@ export default {
       </div>
       <div class="btn-right">
         <button class="btn" @click="addMemo">{{ changeButtonName }}</button>
-          <button
-            class="btn"
-            v-if="data.edit !== false"
-            @click="deleteMemo(data.id)"
-          >
-            削除
-          </button>
+        <button
+          class="btn"
+          v-if="data.edit !== false"
+          @click="deleteMemo(data.id)"
+        >
+          削除
+        </button>
       </div>
     </div>
   </div>
