@@ -114,7 +114,6 @@ export default {
       </div>
       <div class="btn-right">
         <button class="btn" @click="addMemo">{{ changeButtonName }}</button>
-        <transition name="del">
           <button
             class="btn"
             v-if="data.edit !== false"
@@ -122,7 +121,6 @@ export default {
           >
             削除
           </button>
-        </transition>
       </div>
     </div>
   </div>
