@@ -17,6 +17,7 @@ export default {
       data.content = "";
       showForm.value = false;
     };
+
     const select = (memo) => {
       data.edit = true;
       data.title = memo.title;
@@ -26,7 +27,7 @@ export default {
     };
 
     const addMemo = () => {
-      if (data.title !== "" && data.edit === false) {
+      if (data.title !== "" && !data.edit) {
         const memo = {
           id: Math.floor(Math.random() * 1000),
           title: data.title,
@@ -51,6 +52,7 @@ export default {
         memos.value = memos.value.filter((memo) => {
           return memo.id !== id;
         });
+        data.edit = false;
         reset();
         saveMemo();
       }
@@ -107,7 +109,7 @@ export default {
     <div v-if="showForm" class="form">
       <div>
         <label class="title">タイトル</label>
-        <input type="text" name="title" v-model="data.title" @focus="edit" />
+        <input type="text" name="title" v-model="data.title" />
       </div>
       <div>
         <label>内容</label>
@@ -119,11 +121,7 @@ export default {
       </div>
       <div class="btn-right">
         <button class="btn" @click="addMemo">{{ changeButtonName }}</button>
-        <button
-          class="btn"
-          v-if="data.edit !== false"
-          @click="deleteMemo(data.id)"
-        >
+        <button class="btn" v-if="data.edit" @click="deleteMemo(data.id)">
           削除
         </button>
       </div>
@@ -142,6 +140,7 @@ ul {
 
 .list:hover {
   color: #9dbbff;
+  cursor: pointer;
 }
 
 .btn-right {
