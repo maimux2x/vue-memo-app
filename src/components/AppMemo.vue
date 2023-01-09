@@ -69,9 +69,7 @@ export default {
       return memos.value;
     };
 
-    const changeButtonName = computed(() =>
-      data.edit === false ? "保存" : "更新"
-    );
+    const changeButtonName = computed(() => (data.edit ? "更新" : "保存"));
 
     onMounted(() => {
       allMemos();
@@ -95,7 +93,7 @@ export default {
       <ul>
         <li
           v-for="memo in memos"
-          v-bind:key="memo.id"
+          :key="memo.id"
           @click="select(memo)"
           class="list"
         >
